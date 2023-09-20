@@ -108,7 +108,7 @@ export default function App() {
   customProps.wallThickness=wallThickness;
 
   return (
-    <Canvas camera={{ fov: 45, near: 0.1, far: 1000 }}>
+    <Canvas camera={{ fov: 45, near: 0.1, far: 1000 }} shadows>
       <Scene />
     </Canvas>
 
