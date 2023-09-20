@@ -12,6 +12,7 @@ export default function App() {
   const customProps = {
     wallColor: 0x00ff00,
     floorColor: 0xff0000,
+    wallThickness:0.3,
   };
 
   return (

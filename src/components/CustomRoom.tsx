@@ -6,15 +6,21 @@ import { Room, RoomProps } from './Room'
 export interface CustomRoomProps extends RoomProps {
     wallColor: number;
     floorColor: number;
+    wallThickness:number;
   }
 
 export class CustomRoom extends Room {
     private wallColor: any;
     private floorColor: any;
+    private wallThickness: any;
 
     constructor(props: CustomRoomProps) {
         super(props);
         this.setColors(props.wallColor,props.floorColor);
+        this.setWallThickness(props.wallThickness);
+    }
+    setWallThickness(wallThickness: number) {
+        this.wallThickness=wallThickness;
     }
     setColors(wallColor: number, floorColor: number) {
         this.wallColor=wallColor;
@@ -41,19 +47,19 @@ export class CustomRoom extends Room {
 
             {/* Walls */}
             <mesh position={[0, this.height / 2, -this.depth / 2]} receiveShadow castShadow>
-                <boxGeometry args={[this.width, this.height, 0.3]} />
+                <boxGeometry args={[this.width, this.height, this.wallThickness]} />
                 <meshStandardMaterial map={this.wallTexture} color={this.wallColor}/>
             </mesh>
             <mesh position={[this.width / 2, this.height / 2, 0]} receiveShadow castShadow>
-                <boxGeometry args={[0.3, this.height, this.depth]} />
+                <boxGeometry args={[this.wallThickness, this.height, this.depth]} />
                 <meshStandardMaterial map={this.wallTexture} color={this.wallColor}/>
             </mesh>
             <mesh position={[0, this.height / 2, this.depth / 2]} >
-                <boxGeometry args={[this.width, this.height, 0.3]} />
+                <boxGeometry args={[this.width, this.height, this.wallThickness]} />
                 <meshStandardMaterial map={this.wallTexture} transparent opacity={0.3} color={this.wallColor}/>
             </mesh>
             <mesh position={[-this.width / 2, this.height / 2, 0]} receiveShadow castShadow>
-                <boxGeometry args={[0.3, this.height, this.depth]} />
+                <boxGeometry args={[this.wallThickness, this.height, this.depth]} />
                 <meshStandardMaterial map={this.wallTexture} color={this.wallColor}/>
             </mesh>
         </>);
