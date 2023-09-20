@@ -2,7 +2,7 @@
 import { Canvas, useFrame } from '@react-three/fiber'
 import Room from './components/Room'
 import { CustomRoom } from './components/CustomRoom';
-
+import { OrbitControls } from '@react-three/drei';
 
 export default function App() {
   const roomWidth = 15;
@@ -29,6 +29,7 @@ export default function App() {
         shadow-camera-bottom={-10}
         />
       <CustomRoom width={roomWidth} height={roomHeight} depth={roomDepth} {...customProps} />
+      <OrbitControls />
     </Canvas>
   );
 }
