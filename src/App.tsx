@@ -1,12 +1,18 @@
 /* eslint-disable */
 import { Canvas, useFrame } from '@react-three/fiber'
 import Room from './components/Room'
+import { CustomRoom } from './components/CustomRoom';
 
 
 export default function App() {
   const roomWidth = 15;
   const roomHeight = 5;
   const roomDepth = 8;
+
+  const customProps = {
+    wallColor: 0x00ff00,
+    floorColor: 0xff0000,
+  };
 
   return (
     <Canvas camera={{ position: [0, 10, 10] }} shadows>
@@ -22,7 +28,7 @@ export default function App() {
         shadow-camera-top={10}
         shadow-camera-bottom={-10}
         />
-      <Room width={roomWidth} height={roomHeight} depth={roomDepth} />
+      <CustomRoom width={roomWidth} height={roomHeight} depth={roomDepth} {...customProps} />
     </Canvas>
   );
 }
