@@ -4,8 +4,8 @@ import { Room, RoomProps } from './Room'
 
 
 export interface CustomRoomProps extends RoomProps {
-    wallColor: number;
-    floorColor: number;
+    wallColor: string;
+    floorColor: string;
     wallThickness:number;
   }
 
@@ -22,7 +22,7 @@ export class CustomRoom extends Room {
     setWallThickness(wallThickness: number) {
         this.wallThickness=wallThickness;
     }
-    setColors(wallColor: number, floorColor: number) {
+    setColors(wallColor: string, floorColor: string) {
         this.wallColor=wallColor;
         this.floorColor=floorColor;
     }
