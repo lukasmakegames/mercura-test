@@ -6,6 +6,7 @@ import { OrbitControls, Html, Text } from '@react-three/drei';
 import { Vector3 } from 'three';
 import { useState, useRef, useEffect } from 'react';
 import { useControls, button, buttonGroup, folder } from 'leva'
+import DataFetcher from './components/DataFetcher';
 
 export default function App() {
 
@@ -110,6 +111,7 @@ export default function App() {
   return (
     <Canvas camera={{ fov: 45, near: 0.1, far: 1000 }} shadows>
       <Scene />
+      <DataFetcher />
     </Canvas>
 
 
