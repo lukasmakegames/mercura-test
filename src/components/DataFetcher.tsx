@@ -1,10 +1,5 @@
-import { Text } from '@react-three/drei';
-import React, { useState, useEffect } from 'react';
-import { useLoader, useThree } from '@react-three/fiber';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-
-
-const ENDPOINT = 'https://floorplanner.config.mercura.dk/'
+import { Gltf, Text } from '@react-three/drei';
+import { useState, useEffect } from 'react';
 
 interface DataID {
     error: string,
@@ -34,17 +29,19 @@ const DataFetcher = () => {
     const [data, setData] = useState<DataID | null>(null);
     const [loading, setLoading] = useState(true);
 
-
-
     useEffect(() => {
         const fetchDataID = async (myID: string) => {
             try {
-                const url = ENDPOINT + `api/part/${myID}`;
+                const url = `/api/part/${myID}`;
                 const response = await fetch(url);
+                console.log(response)
                 const result: DataID = JSON.parse(await response.text());
                 setData(result);
                 setLoading(false);
-                console.log('data:', result);
+                // console.log('data:', result);
+
+                console.log(result?.part.model_3d)
+
             } catch (error) {
                 console.error('Error fetching data:', error);
                 setLoading(false);
@@ -55,11 +52,7 @@ const DataFetcher = () => {
     }, []);
 
 
-    const GLBModel = (url: any) => {
-        console.log(url.url)
-        const gltf = useLoader(GLTFLoader, ENDPOINT + url.url);
-        return <primitive object={gltf.scene} />;
-    };
+
 
     return (
         <>
@@ -73,10 +66,10 @@ const DataFetcher = () => {
                 >
                     LOADING DATA FROM API...
                 </Text>
-            ) : (
-                // <GLBModel url={data?.part.model_3d} />
-                <></>
-            )}
+            ) :
+                (
+                    <Gltf src={"storage/" + data?.part.model_3d} receiveShadow castShadow />
+                )}
         </>
     );
 };

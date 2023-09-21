@@ -111,7 +111,7 @@ export default function App() {
   return (
     <Canvas camera={{ fov: 45, near: 0.1, far: 1000 }} shadows>
       <Scene />
-      <DataFetcher />
+      {/* <DataFetcher /> */}
     </Canvas>
 
 
